@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  # A Postgres Database container for storing data.
+  db:
+    restart: always
+    image: postgres:12.0-alpine
+    ports:
+      - "5435:5432"
+    env_file:
+      - env.env
+    volumes:
+      - postgres_data-dev:/var/lib/postgresql/data/
+
+  # A Django Application container.
+  web:
+    build: .
+    command: python3 /code/manage.py runserver 0.0.0.0:8000
+    env_file:
+      - env.env
+    volumes:
+      - .:/code # To sync local and Docker code.
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - db
+
+volumes:
+  postgres_data-dev: # Define separate volume for Postgres data
+    driver: local
