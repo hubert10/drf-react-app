@@ -1,9 +1,4 @@
----
-noteId: "a7ae8fb0da5211eabcc5fb5636741ef8"
-tags: []
----
-
-# Django Rest API with Reacjs
+# Django Rest API with ReacJs
 
 This project integrates django rest api for the backend and ReactJs for the frontend. The focus of this application is to show you how to consume a Django API quickly from a React app.
 
